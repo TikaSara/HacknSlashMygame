@@ -15,41 +15,50 @@ public class PlayerDamage : MonoBehaviour {
 
     void Start()
     {
-        print(maxHealth);
         health = maxHealth;
         healthBar.fillAmount = health;
+
+        // Check if the player should be alive to begin with
+        if (health <= 0)
+        {
+            StartCoroutine(GetComponent<CharacterController>().KillPlayer());
+        }
     }
 
+    // If an enemy hits the player, deal damage to the player
     void OnCollisionEnter(Collision _collision)
     {
         if (_collision.gameObject.tag == "enemy")
         {
             TakeDamage(damage);
-            print("Enemy just touched player!" + maxHealth);
         }    
-    }
-
-    void Update()
-    {
-
-        if (health <= 0)
-        {
-            Destroy(this.gameObject);
-        }
     }
 
     public void TakeDamage(int damage)
     {
+        // Handle everything that happens when the player gets hit
         health -= damage;
+        GetComponent<AudioSource>().Play();
         UpdateHealthBar();
+
+        if (health <= 0)
+        {
+            StartCoroutine(GetComponent<CharacterController>().KillPlayer());
+        }
     }
     public void HealPlayer(int amount)
     {
-        TakeDamage(-amount);
+        health = Mathf.Min(health + amount, maxHealth);
+        UpdateHealthBar();
     }
 
     public void UpdateHealthBar()
     {
         healthBar.fillAmount = (float)health / maxHealth;
+    }
+
+    public bool HasMaxHealth()
+    {
+        return health == maxHealth;
     }
 }

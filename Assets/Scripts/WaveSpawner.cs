@@ -33,11 +33,13 @@ public class WaveSpawner : MonoBehaviour
         {
             Debug.LogError("no spawn points found");
         }
+
         waveCountdown = timeBetweenWaves;
-         
     }
+
     private void Update()
     {
+        // Handle each state and what should happen
         if (state == SpawnState.WAITING)
         {
             if (!EnemyIsAlive())
@@ -65,16 +67,13 @@ public class WaveSpawner : MonoBehaviour
 
     void WaveCompleted()
     {
-        Debug.Log("Wave Completed!");
-
         state = SpawnState.COUNTING;
         waveCountdown = timeBetweenWaves;
 
         if (nextWave + 1 > waves.Length - 1)
         {
-            // hier kan je game end schrijven.
-            nextWave = 0;
-            Debug.Log("All Waves cleared. Looopinggg");
+            //End the game
+            UnityEngine.SceneManagement.SceneManager.LoadScene(4);
         }
         else
         {
@@ -86,21 +85,14 @@ public class WaveSpawner : MonoBehaviour
 
     bool EnemyIsAlive()
     {
-        searchCountdown -= Time.deltaTime;
-        if (searchCountdown <= 0f)
-        {
-            searchCountdown = 1f;
-            if (GameObject.FindGameObjectsWithTag("enemy").Length == 0)
-            {
-                return false;
-            }
-        }
-        return true;
+        // Check if there is at least 1 enemy alive
+
+        return GameObject.FindObjectOfType<EnemyController>();
     }
 
     IEnumerator SpawnWave (Wave _wave)
     {
-        Debug.Log("Spawn Wave " + _wave.name);
+        // Spawn the next wave
         state = SpawnState.SPAWING;
 
         for( int i = 0; i < _wave.count; i ++)
@@ -116,10 +108,7 @@ public class WaveSpawner : MonoBehaviour
 
     void SpawnEnemy (Transform _enemy)
     {
-        
-        Debug.Log("Spawing Enemy: " + _enemy.name);
-       
-
+        // Spawn a single enemy
         Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
         Instantiate(_enemy, _sp.position, _sp.rotation);
     }
