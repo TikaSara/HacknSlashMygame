@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Follows the player around in 3rd person perspective
 public class CameraController : MonoBehaviour {
 
     public Transform target;
@@ -20,6 +21,7 @@ public class CameraController : MonoBehaviour {
 
     void SetCameraTarget(Transform t)
     {
+        // Tell the camera what gameobject to follow
         target = t;
         if (target != null)
         {
@@ -45,6 +47,7 @@ public class CameraController : MonoBehaviour {
 
     void MoveToTarget()
     {
+        // Move the camera behind the player
         destination = charController.TargetRotation * offsetFromTarget;
         destination += target.position;
         transform.position = destination;
@@ -52,6 +55,7 @@ public class CameraController : MonoBehaviour {
 
     void LookAtTarget()
     {
+        // Turn the camera towards the player
         float eulerYAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, target.eulerAngles.y, ref rotateVel, lookSmooth);
         transform.rotation = Quaternion.Euler(transform.eulerAngles.x, eulerYAngle,0);
     }

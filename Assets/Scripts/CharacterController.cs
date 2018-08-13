@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour {
 
+    // Extensive set of Variables
     [System.Serializable]
     public class MoveSettings
     {
@@ -45,7 +46,12 @@ public class CharacterController : MonoBehaviour {
     float dashInput;
     public float dashSpeed;
 
-    bool canDash = true;
+    private bool canDash = true;
+    private bool canRun = true;
+    private bool playingHitSound = false;
+
+    private Animator animator;
+
 
     public Quaternion TargetRotation
     {
@@ -64,22 +70,55 @@ public class CharacterController : MonoBehaviour {
             rBody = GetComponent<Rigidbody>();
         else
             Debug.LogError("Character needs a rigibody");
-       
+
+        animator = GetComponentInChildren<Animator>();
     }
 
+    // Handle Controller Input for every (configured) button
     public void GetInput()
     {
         forwardInput = Input.GetAxis(inputSetting.FORWARD_AXIS);
+        animator.SetBool("Run", !Mathf.Approximately(0, Input.GetAxisRaw(inputSetting.FORWARD_AXIS)));
+        
         turnInput = Input.GetAxis(inputSetting.TURN_AXIS);
         dashInput = Input.GetAxis("left Trigger");
-        
+
+        if (Input.GetButtonDown("Attack"))
+        {
+            animator.SetTrigger("Slash");
+
+            if (!playingHitSound)
+            {
+                StartCoroutine(HitSound());
+            }
+        }
+
+        if (Input.GetButtonDown("Cancel"))
+        {
+            PlayerDamage playerDamage = GetComponent<PlayerDamage>();
+            playerDamage.TakeDamage(playerDamage.health);
+        }
+    }
+
+    private IEnumerator HitSound()
+    {
+        playingHitSound = true;
+        yield return new WaitForSeconds(0.5f);
+        GetComponents<AudioSource>()[1].Play();
+        yield return new WaitForSeconds(0.57f);
+        playingHitSound = false;
     }
 
     public void Update()
     {
         GetInput();
         Turn();
-        if (forwardInput > 0.2)
+
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        canRun = !stateInfo.IsName("Slash") && !stateInfo.IsName("Die");
+
+        // Move the player
+        if (forwardInput > 0.2 && canRun)
         {
             forwardInputAssurnce = 3;
         } else
@@ -87,7 +126,8 @@ public class CharacterController : MonoBehaviour {
             forwardInputAssurnce = 0;
         }
 
-        if (dashInput >= 0.6 && canDash)
+        // Dash
+        if (dashInput >= 0.6 && canRun && canDash)
         {
             
             rBody.AddForce(transform.forward * dashSpeed, ForceMode.Impulse);
@@ -111,6 +151,7 @@ public class CharacterController : MonoBehaviour {
 
     public void Run()
     {
+        // Either move at constant speed or stop moving immediately
         if (Mathf.Abs(forwardInput) > inputSetting.inputDelay)
         {
             //move
@@ -123,11 +164,23 @@ public class CharacterController : MonoBehaviour {
 
    public  void Turn()
     {
-        if (Mathf.Abs(turnInput) > inputSetting.inputDelay)
+        // Math-stuff to calculate turning
+        if (Mathf.Abs(turnInput) > inputSetting.inputDelay && canRun)
         {
             targetRotation *= Quaternion.AngleAxis(moveSetting.rotateVel * turnInput * Time.deltaTime, Vector3.up);
         }
         transform.rotation = targetRotation;
+    }
+
+    public IEnumerator KillPlayer()
+    {
+        canDash = false;
+        canRun = false;
+        animator.SetBool("Dead", true);
+        yield return new WaitForSeconds(3);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(3);
+
+        yield return null;
     }
 
 }

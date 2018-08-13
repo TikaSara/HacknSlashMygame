@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class BasicfollowingEnemy : MonoBehaviour {
+
     private Transform target;
     private Transform myTransform;
     private NavMeshAgent Agent;

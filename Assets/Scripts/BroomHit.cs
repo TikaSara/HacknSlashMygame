@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BroomHit : MonoBehaviour {
-
-
+public class BroomHit : MonoBehaviour
+{
+    // If the broom hits an enemy, damage the enemy
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "enemy")
         {
-            EnemyController enemyScript = other.gameObject.GetComponent<EnemyController>();
+            other.gameObject.GetComponent<EnemyController>().GetHit();
             print("u been hit by broom");
-            enemyScript.GetHit();
         }
     }
 }
