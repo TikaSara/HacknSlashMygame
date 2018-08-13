@@ -1,0 +1,179 @@
+fileFormatVersion: 2
+guid: 39146b71f7843be48b2f5a41829217df
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: BoekeKast
+    100004: Boeken
+    100006: BoekenPlank
+    100008: door
+    100010: Floor
+    100012: HaartHart
+    100014: HangMat
+    100016: leunStoel
+    100018: OmhulselHouse
+    100020: Pijp
+    100022: PrullenBk
+    100024: RaamLinkekant
+    100026: RaamRechterKant
+    100028: RommelDozen
+    100030: SmolChair_table
+    100032: SpullenKast
+    100034: Werkstoel
+    100036: WErktafel
+    400000: //RootNode
+    400002: BoekeKast
+    400004: Boeken
+    400006: BoekenPlank
+    400008: door
+    400010: Floor
+    400012: HaartHart
+    400014: HangMat
+    400016: leunStoel
+    400018: OmhulselHouse
+    400020: Pijp
+    400022: PrullenBk
+    400024: RaamLinkekant
+    400026: RaamRechterKant
+    400028: RommelDozen
+    400030: SmolChair_table
+    400032: SpullenKast
+    400034: Werkstoel
+    400036: WErktafel
+    2100000: lambert1
+    2300000: BoekeKast
+    2300002: Boeken
+    2300004: BoekenPlank
+    2300006: door
+    2300008: Floor
+    2300010: HaartHart
+    2300012: HangMat
+    2300014: leunStoel
+    2300016: OmhulselHouse
+    2300018: Pijp
+    2300020: PrullenBk
+    2300022: RaamLinkekant
+    2300024: RaamRechterKant
+    2300026: RommelDozen
+    2300028: SmolChair_table
+    2300030: SpullenKast
+    2300032: Werkstoel
+    2300034: WErktafel
+    3300000: BoekeKast
+    3300002: Boeken
+    3300004: BoekenPlank
+    3300006: door
+    3300008: Floor
+    3300010: HaartHart
+    3300012: HangMat
+    3300014: leunStoel
+    3300016: OmhulselHouse
+    3300018: Pijp
+    3300020: PrullenBk
+    3300022: RaamLinkekant
+    3300024: RaamRechterKant
+    3300026: RommelDozen
+    3300028: SmolChair_table
+    3300030: SpullenKast
+    3300032: Werkstoel
+    3300034: WErktafel
+    4300000: Floor
+    4300002: OmhulselHouse
+    4300004: SmolChair_table
+    4300006: HangMat
+    4300008: Boeken
+    4300010: Pijp
+    4300012: BoekenPlank
+    4300014: PrullenBk
+    4300016: RaamLinkekant
+    4300018: RaamRechterKant
+    4300020: SpullenKast
+    4300022: RommelDozen
+    4300024: WErktafel
+    4300026: HaartHart
+    4300028: leunStoel
+    4300030: Werkstoel
+    4300032: BoekeKast
+    4300034: door
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
